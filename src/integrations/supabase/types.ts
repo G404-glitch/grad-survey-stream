@@ -14,7 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      survey_responses: {
+        Row: {
+          answers: Json
+          created_at: string
+          id: string
+          last_error: string | null
+          submission_attempts: number
+          submitted: boolean
+          submitted_at: string | null
+          updated_at: string
+        }
+        Insert: {
+          answers: Json
+          created_at?: string
+          id?: string
+          last_error?: string | null
+          submission_attempts?: number
+          submitted?: boolean
+          submitted_at?: string | null
+          updated_at?: string
+        }
+        Update: {
+          answers?: Json
+          created_at?: string
+          id?: string
+          last_error?: string | null
+          submission_attempts?: number
+          submitted?: boolean
+          submitted_at?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
