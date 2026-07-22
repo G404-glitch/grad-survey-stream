@@ -466,6 +466,20 @@ const STEPS: Step[] = [
     visible: () => true,
   },
   {
+    key: "nom",
+    entryId: "entry.1589271845",
+    kind: "text",
+    label: "Nom",
+    visible: () => true,
+  },
+  {
+    key: "prenom",
+    entryId: "entry.1209444768",
+    kind: "text",
+    label: "Prénom",
+    visible: () => true,
+  },
+  {
     key: "sexe",
     entryId: "entry.1562111812",
     kind: "radio",
@@ -1074,6 +1088,227 @@ const btnSecondary =
 const btnGhost =
   "inline-flex h-11 items-center justify-center rounded-xl px-4 text-sm font-medium text-muted-foreground hover:text-foreground transition";
 
+type Language = "fr" | "en";
+
+function translateText(label: string, lang: Language): string {
+  if (lang === "fr") return label;
+  return EN_TRANSLATIONS[label] ?? label;
+}
+
+const EN_TRANSLATIONS: Record<string, string> = {
+  Oui: "Yes",
+  Non: "No",
+  Masculin: "Male",
+  Féminin: "Female",
+  Nom: "Last name",
+  Prénom: "First name",
+  Camerounaise: "Cameroonian",
+  Allemande: "German",
+  Burundaise: "Burundian",
+  Centrafricaine: "Central African",
+  "Congolaise (Brazza)": "Congolese (Brazzaville)",
+  "Congolaise (Kinshasa)": "Congolese (Kinshasa)",
+  Equato-guinéenne: "Equatorial Guinean",
+  Espagnole: "Spanish",
+  Française: "French",
+  Gabonaise: "Gabonese",
+  Ivoirienne: "Ivorian",
+  Malienne: "Malian",
+  Rwandaise: "Rwandan",
+  "Sao Tomé-et-Principe": "São Toméan",
+  Sénégalaise: "Senegalese",
+  Tchadienne: "Chadian",
+  Adamaoua: "Adamawa",
+  Centre: "Center",
+  Est: "East",
+  "Extrême-Nord": "Far North",
+  Littoral: "Coastal",
+  Nord: "North",
+  "Nord-Ouest": "Northwest",
+  Ouest: "West",
+  Sud: "South",
+  "Sud-Ouest": "Southwest",
+  "Université de Bamenda": "University of Bamenda",
+  "Université de Buea": "University of Buea",
+  "Université de Douala": "University of Douala",
+  "Université de Dschang": "University of Dschang",
+  "Université de Maroua": "University of Maroua",
+  "Université de Ngaoundéré": "University of Ngaoundéré",
+  "Université de Yaoundé I": "University of Yaoundé I",
+  "Université de Yaoundé II": "University of Yaoundé II",
+  "Autres Grandes Ecoles (ENAM, INJS, ENSTP, ENSPT, etc.)":
+    "Other major schools (ENAM, INJS, ENSTP, ENSPT, etc.)",
+  "Instituts Privés d'Enseignement Supérieur (IPES)":
+    "Private Higher Education Institutes (IPES)",
+  DEUG: "DEUG",
+  "Licence (ou équivalent : Licence Professionnelle, Bachelor, etc...)":
+    "Bachelor's degree (or equivalent: professional license, bachelor, etc.)",
+  Maîtrise: "Master's degree",
+  "DEA / DESS": "DEA / DESS",
+  "Master (ou équivalent : Master Professionnel, Master Recherche, MBA, etc...)":
+    "Master's degree (or equivalent: professional master's, research master's, MBA, etc.)",
+  "Doctorat / PhD": "Doctorate / PhD",
+  "BTS (Brevet de Technicien Supérieur)": "BTS (Higher Technician Certificate)",
+  "Diplôme des écoles normales supérieures (DIPES, DIPET, DIPCO, DIPEN, …)":
+    "Diploma from higher teacher training schools (DIPES, DIPET, DIPCO, DIPEN, …)",
+  "Diplôme d'Ingénieur": "Engineering degree",
+  "DTS (Diplôme de Technicien Supérieur)": "DTS (Higher Technician Diploma)",
+  Autre: "Other",
+  "Formations juridiques, économiques et de gestion":
+    "Legal, economic, and management studies",
+  "Lettres, Langues et Arts": "Letters, languages, and arts",
+  "Sciences humaines et sociales": "Humanities and social sciences",
+  "Sciences, Technologies et formations de la Santé": "Sciences, technology, and health studies",
+  "En emploi (salarié, indépendant, entrepreneur)":
+    "Employed (salaried, self-employed, entrepreneur)",
+  "À la recherche d'un emploi": "Looking for a job",
+  "Poursuite d'études (dans l'enseignement supérieur)": "Continuing studies (in higher education)",
+  "En formation professionnelle (non universitaire)": "In professional training (non-university)",
+  "En stage (non rémunéré ou très faiblement rémunéré)": "Internship (unpaid or very low paid)",
+  "Freelance (contrat ou consultation temporaire en ligne)": "Freelance (temporary online contract or consulting)",
+  "Inactif (au foyer, raisons personnelles, etc.)": "Inactive (at home, personal reasons, etc.)",
+  "Petits jobs (mais à l'écoute du marché de l'emploi)": "Odd jobs (but open to the labor market)",
+  Administratif: "Administrative",
+  "Aéronautique et transport aérien": "Aerospace and air transport",
+  Agriculture: "Agriculture",
+  Agroalimentaire: "Agri-food",
+  "Architecte - BTP - Urbanisme": "Architecture - Construction - Urbanism",
+  "Armée de Terre": "Army",
+  Art: "Art",
+  Artisanat: "Craftsmanship",
+  Assurance: "Insurance",
+  "Audiovisuel - Cinéma": "Audiovisual - Film",
+  Automobile: "Automotive",
+  "Banque - Finance": "Banking - Finance",
+  "Chimie - Biologie": "Chemistry - Biology",
+  "Commerce - Vente - Distribution": "Commerce - Sales - Distribution",
+  Communication: "Communication",
+  "Comptabilité - Gestion": "Accounting - Management",
+  Création: "Creation",
+  Culture: "Culture",
+  Cybersécurité: "Cybersecurity",
+  "Droit - Justice": "Law - Justice",
+  Economie: "Economics",
+  "Édition et métiers du livre": "Publishing and book industry",
+  Energie: "Energy",
+  Enseignement: "Education",
+  "Environnement - Développement durable": "Environment - Sustainable development",
+  "Esthétique - Beauté - Coiffure": "Aesthetics - Beauty - Hairdressing",
+  Événementiel: "Event planning",
+  "Fonction publique / Management public": "Public sector / Public management",
+  "Hôtellerie-Restauration": "Hospitality - Catering",
+  Humanitaire: "Humanitarian",
+  Immobilier: "Real estate",
+  Industrie: "Industry",
+  "Informatique - Electronique - Numérique": "Information technology - Electronics - Digital",
+  "Intelligence Artificielle (IA)": "Artificial Intelligence (AI)",
+  "Internet - Web": "Internet - Web",
+  "Jeu vidéo - Esport - Gaming": "Video games - Esports - Gaming",
+  Journalisme: "Journalism",
+  Luxe: "Luxury",
+  "Métiers animaliers": "Animal care professions",
+  "Métiers de bouche": "Food service",
+  "Métiers de la mer": "Marine professions",
+  "Métiers du vin": "Wine industry",
+  "Mode - Textile": "Fashion - Textile",
+  Multimédia: "Multimedia",
+  Musique: "Music",
+  Paramédical: "Paramedical",
+  Psychologie: "Psychology",
+  "Publicité - Marketing": "Advertising - Marketing",
+  "Ressources Humaines": "Human resources",
+  Santé: "Health",
+  "Secrétaire-Assistant(e)": "Secretary-Assistant",
+  "Sécurité - Armée - Défense": "Security - Army - Defense",
+  Social: "Social",
+  Sport: "Sport",
+  Tourisme: "Tourism",
+  "Transport- Logistique": "Transport - Logistics",
+  "Travailler avec les enfants": "Working with children",
+  Autres: "Other",
+  "Souhaitez-vous être contacté plus tard pour approfondir le suivi de votre carrière ?":
+    "Would you like to be contacted later to discuss your career follow-up in more detail?",
+  "Quelle est l'année académique de votre première inscription dans l'enseignement supérieur ?":
+    "What is the academic year of your first enrollment in higher education?",
+  Sexe: "Gender",
+  "Votre date de naissance": "Your date of birth",
+  Nationalité: "Nationality",
+  "Région d'origine (au Cameroun)": "Region of origin (in Cameroon)",
+  "Quel est le dernier établissement d'enseignement supérieur que vous avez fréquenté ?":
+    "Which is the last higher education institution you attended?",
+  "Quel était votre établissement (faculté / école) ?":
+    "Which institution (faculty / school) did you attend?",
+  "Quelle est l'année académique d'obtention de votre diplôme le plus élevé ?":
+    "What is the academic year in which you earned your highest diploma?",
+  "Quel est le diplôme que vous avez obtenu durant cette année académique ?":
+    "What diploma did you earn during that academic year?",
+  "Avez-vous repris une ou plusieurs années durant votre parcours universitaire ?":
+    "Did you repeat one or more years during your university studies?",
+  "Domaine d'études de votre diplôme": "Field of study of your diploma",
+  "Discipline précise": "Specific discipline",
+  "Quelle est votre situation professionnelle actuelle ?":
+    "What is your current professional situation?",
+  "Dans quel secteur d'activité avez-vous été recruté ?":
+    "In which activity sector were you recruited?",
+  "Est-ce dans le public, parapublic, privé, … ?":
+    "Is it in the public, semi-public, private sector, ... ?",
+  "Quelle est votre activité principale actuelle ?": "What is your main current activity?",
+  "Précisez votre métier": "Please specify your occupation",
+  "Votre emploi actuel est-il lié à votre domaine de formation ?":
+    "Is your current job related to your field of study?",
+  "Par quel canal avez-vous eu votre premier emploi ? (max 3)":
+    "Through which channel did you get your first job? (max 3)",
+  "Depuis l'obtention de votre diplôme, combien d'emploi(s) avez-vous occupé(s) ?":
+    "Since earning your diploma, how many job(s) have you held?",
+  "Quel est votre niveau de satisfaction concernant votre emploi actuel ?":
+    "What is your level of satisfaction with your current job?",
+  "Si vous êtes salarié(e), quel est votre revenu net mensuel (en FCFA) ?":
+    "If you are employed, what is your monthly net income (in FCFA)?",
+  "Depuis combien de temps êtes-vous à la recherche d'un emploi ?":
+    "How long have you been looking for a job?",
+  "Principales difficultés dans votre recherche d'emploi (max 3)":
+    "Main difficulties in your job search (max 3)",
+  "Avez-vous entrepris des démarches complémentaires (formations, certifications, stages, bénévolat) pour faciliter votre insertion professionnelle ?":
+    "Have you undertaken additional steps (training, certifications, internships, volunteering) to support your professional integration?",
+  "Pourquoi avez-vous décidé de continuer vos études ?":
+    "Why did you decide to continue your studies?",
+  "Quel est le diplôme que vous préparez actuellement ?":
+    "What diploma are you currently preparing?",
+  "Dans quelle université / IPES poursuivez-vous vos études ?":
+    "Which university / IPES are you attending?",
+  "S'agit-il de la même spécialité que votre précédent diplôme ?":
+    "Is it the same specialty as your previous diploma?",
+  "Pourriez-vous décrire brièvement votre situation professionnelle actuelle ?":
+    "Could you briefly describe your current professional situation?",
+  "Comment appréciez-vous la formation reçue à l'université relativement à votre insertion au monde professionnel ?":
+    "How do you assess the training received at university in relation to your entry into the professional world?",
+  "Points forts de la formation (max 2)": "Strengths of the training (max 2)",
+  "Aspects à améliorer dans la formation (max 2)": "Aspects to improve in the training (max 2)",
+  "Recommanderiez-vous cette formation à un futur étudiant ?":
+    "Would you recommend this training to a future student?",
+  "Si vous pouviez donner un conseil à votre « vous » du passé juste avant l'obtention de votre diplôme, quel serait-il ?":
+    "If you could give advice to your past self just before earning your diploma, what would it be?",
+  "Aspirations professionnelles pour les 3 à 5 prochaines années (max 3)":
+    "Career aspirations for the next 3 to 5 years (max 3)",
+  "Souhaiteriez-vous maintenir un lien avec votre ancien établissement d'enseignement supérieur ?":
+    "Would you like to maintain a connection with your former higher education institution?",
+  "Avez-vous obtenu un diplôme durant l'année académique 2020-2021 ?":
+    "Did you earn a diploma during the 2020-2021 academic year?",
+  "Quel est le diplôme obtenu durant l'année académique 2020-2021 ?":
+    "What diploma did you earn during the 2020-2021 academic year?",
+  "Avez-vous gardé le contact avec vos promotionnaires ?":
+    "Have you kept in touch with your classmates?",
+  "Pourriez-vous accepter de partager le lien de l'étude pour faire participer vos promotionnaires ?":
+    "Would you be willing to share the study link to recruit your classmates?",
+  "Question {index + 1} / {total}": "Question {index + 1} / {total}",
+  "— Sélectionner —": "— Select —",
+  "Votre réponse…": "Your answer…",
+  "Vérification avant envoi": "Review before sending",
+  "Relisez chaque réponse. Touchez une ligne pour la modifier.":
+    "Review each answer. Tap a row to edit it.",
+  "Il y a des réponses non envoyées.": "There are unsent responses.",
+};
+
 // ---- Main component --------------------------------------------------------
 
 type Screen = "home" | "survey" | "review" | "queue";
@@ -1084,6 +1319,7 @@ export default function SurveyApp() {
   const [stepIdx, setStepIdx] = useState(0);
   const [queue, setQueue] = useState<QueueEntry[]>([]);
   const [busy, setBusy] = useState(false);
+  const [lang, setLang] = useState<Language>("fr");
   const [toast, setToast] = useState<string | null>(null);
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -1228,14 +1464,22 @@ export default function SurveyApp() {
             <div className="text-xs uppercase tracking-widest text-muted-foreground">MINESUP</div>
             <div className="text-lg font-bold leading-tight">Collecte Alumni</div>
           </button>
-          <button onClick={() => setScreen("queue")} className={btnGhost}>
-            File
-            {pendingCount > 0 && (
-              <span className="ml-2 inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-destructive px-1.5 text-xs font-bold text-destructive-foreground">
-                {pendingCount}
-              </span>
-            )}
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setLang((current) => (current === "fr" ? "en" : "fr"))}
+              className={btnGhost + " rounded-full border border-border px-3"}
+            >
+              {lang === "fr" ? "FR • EN" : "EN • FR"}
+            </button>
+            <button onClick={() => setScreen("queue")} className={btnGhost}>
+              File
+              {pendingCount > 0 && (
+                <span className="ml-2 inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-destructive px-1.5 text-xs font-bold text-destructive-foreground">
+                  {pendingCount}
+                </span>
+              )}
+            </button>
+          </div>
         </header>
 
         {toast && (
@@ -1251,6 +1495,7 @@ export default function SurveyApp() {
               onQueue={() => setScreen("queue")}
               total={queue.length}
               pending={pendingCount}
+              lang={lang}
             />
           )}
 
@@ -1263,6 +1508,7 @@ export default function SurveyApp() {
               onBack={back}
               index={stepIdx}
               total={visibleSteps.length}
+              lang={lang}
             />
           )}
 
@@ -1279,6 +1525,7 @@ export default function SurveyApp() {
               }}
               onSubmit={saveAndSubmit}
               busy={busy}
+              lang={lang}
             />
           )}
 
@@ -1305,35 +1552,42 @@ function HomeScreen({
   onQueue,
   total,
   pending,
+  lang,
 }: {
   onStart: () => void;
   onQueue: () => void;
   total: number;
   pending: number;
+  lang: Language;
 }) {
+  const title = lang === "fr" ? "Enquête de suivi des diplômés" : "Graduate follow-up survey";
+  const description =
+    lang === "fr"
+      ? "Version courte — champs obligatoires uniquement. Chaque réponse est soumise au formulaire officiel MINESUP."
+      : "Short version — required fields only. Each response is submitted to the official MINESUP form.";
+  const start = lang === "fr" ? "Commencer une nouvelle réponse" : "Start a new response";
+  const queue = lang === "fr" ? `Voir la file (${pending} en attente / ${total} au total)` : `View queue (${pending} pending / ${total} total)`;
+  const note =
+    lang === "fr"
+      ? "Les réponses sont sauvegardées localement avant tout envoi."
+      : "Responses are saved locally before any submission.";
+
   return (
     <div className="flex flex-col gap-6 pt-6">
       <div className="rounded-3xl bg-card p-6 shadow-sm">
-        <h1 className="text-2xl font-bold leading-tight">
-          Enquête de suivi des diplômés
-        </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Version courte — champs obligatoires uniquement. Chaque réponse est
-          soumise au formulaire officiel MINESUP.
-        </p>
+        <h1 className="text-2xl font-bold leading-tight">{title}</h1>
+        <p className="mt-2 text-sm text-muted-foreground">{description}</p>
       </div>
 
       <button className={btnPrimary + " w-full"} onClick={onStart}>
-        Commencer une nouvelle réponse
+        {start}
       </button>
 
       <button className={btnSecondary + " w-full"} onClick={onQueue}>
-        Voir la file ({pending} en attente / {total} au total)
+        {queue}
       </button>
 
-      <p className="mt-4 text-center text-xs text-muted-foreground">
-        Les réponses sont sauvegardées localement avant tout envoi.
-      </p>
+      <p className="mt-4 text-center text-xs text-muted-foreground">{note}</p>
     </div>
   );
 }
@@ -1348,6 +1602,7 @@ function SurveyScreen({
   onBack,
   index,
   total,
+  lang,
 }: {
   step: Step;
   answers: Answers;
@@ -1356,6 +1611,7 @@ function SurveyScreen({
   onBack: () => void;
   index: number;
   total: number;
+  lang: Language;
 }) {
   const { options } = resolveStep(step, answers);
   const progress = Math.round(((index + 1) / total) * 100);
@@ -1375,7 +1631,7 @@ function SurveyScreen({
         </div>
       </div>
 
-      <h2 className="text-xl font-semibold leading-snug">{step.label}</h2>
+      <h2 className="text-xl font-semibold leading-snug">{translateText(step.label, lang)}</h2>
 
       <div className="flex flex-col gap-2">
         {step.kind === "radio" &&
@@ -1394,7 +1650,7 @@ function SurveyScreen({
                 checked={val === opt}
                 onChange={() => setValue(step.key, opt)}
               />
-              <span className="flex-1">{opt}</span>
+              <span className="flex-1">{translateText(opt, lang)}</span>
             </label>
           ))}
 
@@ -1404,10 +1660,10 @@ function SurveyScreen({
             value={typeof val === "string" ? val : ""}
             onChange={(e) => setValue(step.key, e.target.value)}
           >
-            <option value="">— Sélectionner —</option>
+            <option value="">{translateText("— Sélectionner —", lang)}</option>
             {(options || []).map((opt) => (
               <option key={opt} value={opt}>
-                {opt}
+                {translateText(opt, lang)}
               </option>
             ))}
           </select>
@@ -1416,7 +1672,7 @@ function SurveyScreen({
         {step.kind === "checkbox" && (
           <>
             <div className="text-xs text-muted-foreground">
-              Sélection maximum : {step.maxSelect}
+              {lang === "fr" ? `Sélection maximum : ${step.maxSelect}` : `Maximum selection: ${step.maxSelect}`}
             </div>
             {(options || []).map((opt) => {
               const cur = arr(answers, step.key);
@@ -1445,7 +1701,7 @@ function SurveyScreen({
                       setValue(step.key, Array.from(nextSet));
                     }}
                   />
-                  <span className="flex-1">{opt}</span>
+                  <span className="flex-1">{translateText(opt, lang)}</span>
                 </label>
               );
             })}
@@ -1457,7 +1713,7 @@ function SurveyScreen({
             className="min-h-32 rounded-2xl border border-border bg-card p-4 text-base"
             value={typeof val === "string" ? val : ""}
             onChange={(e) => setValue(step.key, e.target.value)}
-            placeholder="Votre réponse…"
+            placeholder={lang === "fr" ? "Votre réponse…" : "Your answer…"}
           />
         )}
 
@@ -1466,10 +1722,10 @@ function SurveyScreen({
 
       <div className="mt-4 flex gap-3">
         <button className={btnSecondary + " flex-1"} onClick={onBack}>
-          ← Retour
+          {lang === "fr" ? "← Retour" : "← Back"}
         </button>
         <button className={btnPrimary + " flex-[2]"} onClick={onNext}>
-          Suivant →
+          {lang === "fr" ? "Suivant →" : "Next →"}
         </button>
       </div>
     </div>
@@ -1510,19 +1766,21 @@ function ReviewScreen({
   onEdit,
   onSubmit,
   busy,
+  lang,
 }: {
   answers: Answers;
   onBack: () => void;
   onEdit: (k: string) => void;
   onSubmit: () => void;
   busy: boolean;
+  lang: Language;
 }) {
   const visible = STEPS.filter((s) => s.visible(answers));
   return (
     <div className="flex flex-col gap-4 pt-4">
-      <h2 className="text-xl font-bold">Vérification avant envoi</h2>
+      <h2 className="text-xl font-bold">{translateText("Vérification avant envoi", lang)}</h2>
       <p className="text-sm text-muted-foreground">
-        Relisez chaque réponse. Touchez une ligne pour la modifier.
+        {translateText("Relisez chaque réponse. Touchez une ligne pour la modifier.", lang)}
       </p>
       <div className="flex flex-col gap-2">
         {visible.map((st) => {
@@ -1531,15 +1789,18 @@ function ReviewScreen({
           if (st.kind === "date" && v && typeof v === "object") {
             const d = v as { year: string; month: string; day: string };
             display = `${d.day}/${d.month}/${d.year}`;
-          } else if (Array.isArray(v)) display = v.join(", ");
-          else display = (v as string) || "—";
+          } else if (Array.isArray(v)) {
+            display = v.map((item) => translateText(item, lang)).join(", ");
+          } else {
+            display = translateText((v as string) || "—", lang);
+          }
           return (
             <button
               key={st.key}
               onClick={() => onEdit(st.key)}
               className="rounded-2xl border border-border bg-card p-4 text-left"
             >
-              <div className="text-xs text-muted-foreground">{st.label}</div>
+              <div className="text-xs text-muted-foreground">{translateText(st.label, lang)}</div>
               <div className="mt-1 font-medium">{display}</div>
             </button>
           );
@@ -1547,10 +1808,16 @@ function ReviewScreen({
       </div>
       <div className="mt-4 flex gap-3">
         <button className={btnSecondary + " flex-1"} onClick={onBack} disabled={busy}>
-          ← Retour
+          {lang === "fr" ? "← Retour" : "← Back"}
         </button>
         <button className={btnPrimary + " flex-[2]"} onClick={onSubmit} disabled={busy}>
-          {busy ? "Envoi…" : "Sauvegarder & Envoyer"}
+          {busy
+            ? lang === "fr"
+              ? "Envoi…"
+              : "Sending…"
+            : lang === "fr"
+              ? "Sauvegarder & Envoyer"
+              : "Save & Send"}
         </button>
       </div>
     </div>
