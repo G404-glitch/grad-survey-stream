@@ -1,24 +1,28 @@
 import { createFileRoute } from "@tanstack/react-router";
+import SurveyApp from "@/components/SurveyForm";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "MINESUP Alumni — Collecte terrain" },
+      {
+        name: "description",
+        content:
+          "Outil mobile de collecte des champs obligatoires de l'enquête MINESUP sur le devenir des diplômés.",
+      },
+      { property: "og:title", content: "MINESUP Alumni — Collecte terrain" },
+      {
+        property: "og:description",
+        content:
+          "Collecte rapide sur mobile des réponses à l'enquête MINESUP, avec file d'attente et envoi au formulaire officiel.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+  return <SurveyApp />;
 }
