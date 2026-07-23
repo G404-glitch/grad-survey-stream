@@ -1108,7 +1108,7 @@ const EN_TRANSLATIONS: Record<string, string> = {
   Centrafricaine: "Central African",
   "Congolaise (Brazza)": "Congolese (Brazzaville)",
   "Congolaise (Kinshasa)": "Congolese (Kinshasa)",
-  Equato-guinéenne: "Equatorial Guinean",
+  "Equato-guinéenne": "Equatorial Guinean",
   Espagnole: "Spanish",
   Française: "French",
   Gabonaise: "Gabonese",
