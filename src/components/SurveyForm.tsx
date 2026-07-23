@@ -1397,19 +1397,9 @@ export default function SurveyApp() {
     };
     // Save FIRST so nothing is lost
     await persistEntry(entry);
-    try {
-      await submitViaIframe(answers);
-      entry.submitted = true;
-      entry.submitted_at = new Date().toISOString();
-      entry.submission_attempts = 1;
-      await persistEntry(entry);
-      notify("Réponse envoyée et sauvegardée.");
-    } catch (e: any) {
-      entry.submission_attempts = 1;
-      entry.last_error = String(e?.message || e);
-      await persistEntry(entry);
-      notify("Réponse sauvegardée. Envoi à réessayer.");
-    }
+    entry.last_error = null;
+    await persistEntry(entry);
+    notify("Réponse sauvegardée.");
     setQueue(await loadQueue());
     setBusy(false);
     setScreen("home");
