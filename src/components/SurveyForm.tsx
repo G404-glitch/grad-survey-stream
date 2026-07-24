@@ -1397,8 +1397,6 @@ export default function SurveyApp() {
     };
     // Save FIRST so nothing is lost
     await persistEntry(entry);
-    entry.last_error = null;
-    await persistEntry(entry);
     notify("Réponse sauvegardée.");
     setQueue(await loadQueue());
     setBusy(false);
