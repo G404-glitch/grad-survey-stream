@@ -1032,7 +1032,7 @@ function removeLocal(id: string) {
 async function persistEntry(entry: QueueEntry) {
   upsertLocal(entry);
   try {
-    await supabase.from("survey_responses").upsert({
+    await supabase.from("survey_responses").insert({
       id: entry.id,
       answers: entry.answers,
       submitted: entry.submitted,
