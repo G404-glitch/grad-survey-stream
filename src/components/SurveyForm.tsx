@@ -540,6 +540,12 @@ const STEPS: Step[] = [
     visible: () => true,
   },
   {
+    key: "diplome_autre",
+    kind: "text",
+    label: "Veuillez préciser votre diplôme",
+    visible: (a) => s(a, "diplome") === "Autre",
+  },
+  {
     key: "redouble",
     entryId: "entry.154158153",
     kind: "radio",
@@ -578,6 +584,12 @@ const STEPS: Step[] = [
     label: "Dans quel secteur d'activité avez-vous été recruté ?",
     options: SECTORS,
     visible: (a) => s(a, "situation") === PROF_SITUATIONS[0],
+  },
+  {
+    key: "secteur_autre",
+    kind: "text",
+    label: "Veuillez préciser votre secteur d'activité",
+    visible: (a) => s(a, "secteur") === "Autres",
   },
   {
     key: "type_emploi",
@@ -933,6 +945,25 @@ function buildFormData(answers: Answers): Record<string, string | string[]> {
     if (!step.visible(answers)) continue;
     const val = answers[step.key];
     if (val == null || val === "" || (Array.isArray(val) && val.length === 0)) continue;
+
+    if (step.key === "diplome" && val === "Autre") {
+      const text = typeof answers.diplome_autre === "string" ? answers.diplome_autre.trim() : "";
+      if (text) {
+        payload["entry.1238043970"] = "__other_option__";
+        payload["entry.1238043970.other_option_response"] = text;
+      }
+      continue;
+    }
+
+    if (step.key === "secteur" && val === "Autres") {
+      const text = typeof answers.secteur_autre === "string" ? answers.secteur_autre.trim() : "";
+      if (text) {
+        payload["entry.1993264057"] = "__other_option__";
+        payload["entry.1993264057.other_option_response"] = text;
+      }
+      continue;
+    }
+
     const { entryId } = resolveStep(step, answers);
     if (step.kind === "date" && typeof val === "object" && "year" in val) {
       payload["entry.1584706306_year"] = val.year;
@@ -1242,6 +1273,8 @@ const EN_TRANSLATIONS: Record<string, string> = {
     "What is the academic year in which you earned your highest diploma?",
   "Quel est le diplôme que vous avez obtenu durant cette année académique ?":
     "What diploma did you earn during that academic year?",
+  "Veuillez préciser votre diplôme": "Please specify your degree",
+  "Veuillez préciser votre secteur d'activité": "Please specify your sector",
   "Avez-vous repris une ou plusieurs années durant votre parcours universitaire ?":
     "Did you repeat one or more years during your university studies?",
   "Domaine d'études de votre diplôme": "Field of study of your diploma",
